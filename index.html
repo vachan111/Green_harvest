@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GreenHarvest Agriculture | Smart Farming for Indian Villages</title>
+<meta name="description" content="GreenHarvest connects farmers, experts, suppliers and customers with seeds, smart irrigation, soil testing and expert advice.">
+<meta property="og:title" content="GreenHarvest Agriculture">
+<meta property="og:description" content="Grow more. Waste less. Sustainable agritech for Indian villages.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preload" as="image" href="hero-farmer.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Welcome screen: pure CSS, hides itself after 3s, so it can never block the page -->
+<div class="pre" aria-hidden="true">
+  <div><div class="sprout">🌱</div><h1>Namaste / స్వాగతం</h1><p>Welcome to GreenHarvest Agriculture</p></div>
+</div>
+<div id="root"><p class="boot">Loading GreenHarvest… If this stays empty, check your internet connection (React loads from a CDN).</p></div>
+<noscript>Please enable JavaScript to view GreenHarvest Agriculture.</noscript>
+
+<script>
+/* Loads React and Three.js with backup CDNs, then starts the app (react.js). Works from file:// or a server. */
+(function () {
+  var R = "react@18.2.0/umd/react.production.min.js", D = "react-dom@18.2.0/umd/react-dom.production.min.js", T = "three@0.128.0/build/three.min.js";
+  function urls(p, c) { return [c, "https://cdn.jsdelivr.net/npm/" + p, "https://unpkg.com/" + p]; }
+  var libs = [
+    [urls(R, "https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"), function () { return window.React; }],
+    [urls(D, "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"), function () { return window.ReactDOM; }],
+    [urls(T, "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"), function () { return window.THREE; }]
+  ];
+  function add(src, ok, fail) { var s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); }
+  function load(n) {
+    if (n === libs.length) return add("react.js", function () {}, function () { msg("Could not find react.js. Keep index.html, style.css and react.js in the same folder."); });
+    var u = libs[n][0], ok = libs[n][1], k = 0;
+    (function next() {
+      if (ok()) return load(n + 1);
+      if (k >= u.length) { if (n === 2) return load(n + 1); return msg("Could not load React. Check your internet connection and reload."); } // Three.js is optional
+      add(u[k++], function () { ok() ? load(n + 1) : next(); }, next);
+    })();
+  }
+  function msg(t) { var r = document.getElementById("root"); if (r) r.innerHTML = '<p class="boot">' + t + "</p>"; }
+  load(0);
+})();
+</script>
+</body>
+</html>
